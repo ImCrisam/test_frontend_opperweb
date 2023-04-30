@@ -3,6 +3,16 @@
     <div
       class="bg-black max-[768px]:bg-gradient-to-b from-fuchsia-200 to-black min-h-screen flex flex-col items-center p-2 justify-center md:w-1/2 w-screen"
     >
+      <div class="md:flex items-center self-start mb-3 hidden">
+        <img
+          src="https://res.cloudinary.com/dwmznusxf/image/upload/v1682856062/vpmxm10fxx6ttjakuahv.png"
+          alt="icons pages"
+          class="mr-3 w-8"
+        />
+        <span class="font-bold text-white">
+          anime<span class="text-fuchsia-400">yabu</span></span
+        >
+      </div>
       <span class="self-start">
         <svg class="text-white w-5 h-5" viewBox="0 0 20 20">
           <path
@@ -19,7 +29,7 @@
       <router-view />
     </div>
     <div
-      class="md:w-1/2 md:bg-fuchsia-600 h-screen hidden md:flex justify-center items-center"
+      class="md:w-1/2 md:bg-fuchsia-600 h-auto hidden md:flex justify-center items-center"
     >
       <Carousel></Carousel>
     </div>
