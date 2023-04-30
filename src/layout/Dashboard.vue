@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-row h-screen">
-    <div class="bg-fuchsia-600 w-1/3 p-4">
+    <div class="bg-fuchsia-600 w-1/4 p-4">
       <div class="flex items-center self-start mb-3">
         <img
           src="https://res.cloudinary.com/dwmznusxf/image/upload/v1682856062/vpmxm10fxx6ttjakuahv.png"
@@ -25,7 +25,7 @@
         </button>
       </div>
     </div>
-    <div class="bg-black w-2/3 flex items-center p-16">
+    <div class="bg-black w-3/4 flex items-center p-16">
       <router-view />
     </div>
   </div>
