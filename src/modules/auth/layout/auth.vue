@@ -18,10 +18,21 @@
 
       <router-view />
     </div>
-    <div class="md:w-1/2 md:bg-fuchsia-600 h-screen hidden md:block"></div>
+    <div
+      class="md:w-1/2 md:bg-fuchsia-600 h-screen hidden md:flex justify-center items-center"
+    >
+      <Carousel></Carousel>
+    </div>
   </div>
 </template>
 
-<script setup></script>
+<script>
+import Carousel from "../components/Carousel.vue";
+export default {
+  components: {
+    Carousel: Carousel,
+  },
+};
+</script>
 
 <style lang="scss" scoped></style>
