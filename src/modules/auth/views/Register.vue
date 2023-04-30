@@ -2,7 +2,7 @@
 import { reactive } from "vue";
 import { useStore } from "vuex";
 import { inject } from "vue";
-import { signature } from "../utils/api";
+import { signature } from "../../../utils/api";
 export default {
   setup() {
     const store = useStore();

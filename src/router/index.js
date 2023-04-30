@@ -1,10 +1,11 @@
 import {createRouter, createWebHashHistory} from "vue-router";
-import Login from "../pages/Login.vue"
-import Register from "../pages/Register.vue"
+import HelloWorld from '../views/HelloWorld.vue';
 
+import routerAuth from '../modules/auth/router';
 const routes = [
-  { path: "/", component: Login },
-  { path: "/register", component: Register },
+  { path: "/", component: HelloWorld },
+  { path: "/auth", ...routerAuth },
+  
 ];
 
 const router = createRouter({
