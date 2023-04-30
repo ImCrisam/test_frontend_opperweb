@@ -8,14 +8,14 @@ export default {
 </script>
 
 <template>
-  <div class="flex mt-7 w-screen justify-between items-center">
+  <div class="flex mt-7 w-full justify-between items-center">
     <hr width="20%" />
     <span v-if="islogin" class="text-sm text-white">Logueate con RRSS </span>
     <span v-else class="text-sm text-white">Regístrate también con </span>
     <hr width="20%" />
   </div>
 
-  <div class="flex justify-around w-screen px-6 mt-4">
+  <div class="flex justify-around w-full px-6 mt-4">
     <button
       class="border-white p-2 border-2 rounded-lg bg-white bg-opacity-70 flex items-center justify-center"
     >
@@ -47,12 +47,14 @@ export default {
       </svg>
     </button>
   </div>
-  <span v-if="islogin" class="text-white mt-7"
-    >Quieres registrarte?
-    <span class="text-fuchsia-200"> Registrate </span>
-  </span>
-  <span v-else class="text-white mt-7"
-    >Ya estás registrado?
-    <span class="text-fuchsia-200"> Acceder </span>
-  </span>
+  <div class="flex justify-center">
+    <a v-if="islogin" href="/#/register" class="text-white my-7 cursor-pointer"
+      >Quieres registrarte?
+      <span class="text-fuchsia-200"> Registrate </span>
+    </a>
+    <a v-else href="/#/" class="text-white my-7 cursor-pointer"
+      >Ya estás registrado?
+      <span class="text-fuchsia-200"> Acceder </span>
+    </a>
+  </div>
 </template>

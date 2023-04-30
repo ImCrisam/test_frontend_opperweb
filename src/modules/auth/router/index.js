@@ -1,5 +1,6 @@
 export default {
     name: "auth",
+    component: () => import(/* webpackChunkName: "daybook" */ '../layout/auth.vue'),
     children: [
         {
             path: '',
