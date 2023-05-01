@@ -7,20 +7,22 @@ import VueAxios from "vue-axios";
 import App from './App.vue'
 import router from "./router";
 
-import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
-
-
+import Swal from "sweetalert2";
 import store from "./store";
+
+const Toast = Swal.mixin({
+    timer: 2000,
+    timerProgressBar: true,  })
 
 const app = createApp(App);
 
 app.use(VueAxios, axios);
 app.provide("axios", app.config.globalProperties.axios);
+app.provide("Swal", Toast);
 
 app.use(store);
 app.use(router);
-app.use(VueSweetalert2);
 
 
 

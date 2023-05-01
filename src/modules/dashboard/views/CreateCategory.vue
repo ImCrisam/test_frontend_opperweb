@@ -25,12 +25,12 @@
 </template>
 
 <script>
-import { reactive } from "vue";
+import { reactive, inject } from "vue";
 import useCategory from "../composables/useCategory";
-import Swal from "sweetalert2";
 export default {
   setup() {
     const { createCategory } = useCategory();
+    const Swal = inject("Swal");
 
     const form = reactive({
       name: "",

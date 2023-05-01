@@ -25,12 +25,14 @@
 
 <script>
 import useCategory from "../composables/useCategory";
-import Swal from "sweetalert2";
+import { inject } from "vue";
 import { useRouter } from "vue-router";
+
 export default {
   setup() {
     const { listCategories, getListCategories, selectCategory } = useCategory();
     const router = useRouter();
+    const Swal = inject("Swal");
 
     const getCategories = async () => {
       const { ok, message } = await getListCategories();

@@ -143,7 +143,7 @@
 </template>
 
 <script>
-import { reactive } from "vue";
+import { reactive, inject } from "vue";
 import { useRouter } from "vue-router";
 import useAuth from "../composables/useAuth";
 import SocialBtn from "../components/SocialBtn.vue";
@@ -156,6 +156,7 @@ export default {
   setup() {
     const router = useRouter();
     const { createUser } = useAuth();
+    const Swal = inject("Swal");
 
     const form = reactive({
       name: "randomusername12",

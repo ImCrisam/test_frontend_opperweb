@@ -24,14 +24,14 @@
 </template>
 
 <script>
-import { reactive } from "vue";
+import { reactive, inject } from "vue";
 import useCategory from "../composables/useCategory";
 import { useRouter } from "vue-router";
-import Swal from "sweetalert2";
 export default {
   setup() {
     const { updateCategory, currentCategory } = useCategory();
     const router = useRouter();
+    const Swal = inject("Swal");
     //console.log(router.options.history.location);
     const form = reactive({
       name: currentCategory.value.nombre || "",

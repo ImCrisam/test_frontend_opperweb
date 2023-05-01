@@ -44,11 +44,10 @@
 </template>
 
 <script>
-import { reactive } from "vue";
+import { reactive, inject } from "vue";
 import { useRouter } from "vue-router";
 import useAuth from "../composables/useAuth";
 import SocialBtn from "../components/SocialBtn.vue";
-import Swal from "sweetalert2";
 export default {
   components: {
     SocialBtn,
@@ -56,10 +55,10 @@ export default {
   setup() {
     const router = useRouter();
     const { loginUser } = useAuth();
-
+    const Swal = inject("Swal");
     const form = reactive({
-      email: "",
-      password: "",
+      email: "randommail21@mail.com",
+      password: "strongkey12321",
     });
 
     const submitForm = async () => {
