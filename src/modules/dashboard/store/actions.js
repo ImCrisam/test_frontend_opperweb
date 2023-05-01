@@ -17,6 +17,19 @@ export const create = async ({ commit, state, rootState }, data ) => {
 
 }
 
+export const list = async ({ commit, state, rootState } ) => {
+    try {
+        const signature = await getSignature();
+        const res = await api.get('v1/categoria', { params: {...signature}, headers: {'Authorization': 'Bearer '+rootState.auth.token} })
+        commit('setLists', { list:res.data.categorias })
+        return { ok: true }
+
+    } catch (error) {
+        return { ok: false, message: error.response.data.status }
+    }
+
+}
+
 
 export const update = async ({ commit, state }, user ) => {
     try {

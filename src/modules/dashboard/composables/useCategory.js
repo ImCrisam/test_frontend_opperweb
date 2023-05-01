@@ -5,6 +5,11 @@ const useCategory = () => {
     
     const store = useStore()
 
+    const getListCategories = async() => {
+        const resp = await store.dispatch('category/list' )
+        return resp
+    }
+
     const selectCategory = async( id ) => {
         const resp = await store.dispatch('category/current', id )
         return resp
@@ -22,11 +27,12 @@ const useCategory = () => {
     
     return {
         createCategory,
-        updateCategory,
+        getListCategories,
         selectCategory,
+        updateCategory,
         
 
-        listCategory: computed(()=> store.getters['category/list']),
+        listCategories: computed(()=> store.getters['category/list']),
         //category: computed(()=> store.getters['category/get'])
     }
 }
