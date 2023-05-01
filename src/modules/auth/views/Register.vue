@@ -176,7 +176,7 @@ export default {
         const { ok, message } = await createUser({ ...form });
         console.log({ ok, message });
         if (ok) {
-          router.push({ name: "dashboard" });
+          router.push({ name: "user" });
         } else {
           Swal.fire("Error", message, "error");
         }

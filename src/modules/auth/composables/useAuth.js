@@ -15,11 +15,18 @@ const useAuth = () => {
         return resp
     }
     
+    const checkAuthStatus = async() => {
+        const resp = await store.dispatch('auth/checkAuthentication')
+        return resp
+    }
+    
+    
     const logout = () => {
         store.commit('auth/logout')
     }
     
     return {
+        checkAuthStatus,
         createUser,
         loginUser,
         logout,

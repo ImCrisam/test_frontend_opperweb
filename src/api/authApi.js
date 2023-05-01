@@ -20,7 +20,7 @@ export const getSignature =  async() => {
 export const api = axios.create({
     baseURL: import.meta.env.VITE_API_URL,
     header: {
-        "Bearer Token":localStorage.getItem("token")
+        'Accept': 'application/json',
     }
     
 })

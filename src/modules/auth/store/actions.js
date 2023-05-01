@@ -18,13 +18,15 @@ export const createUser = async ({ commit }, data ) => {
 }
 
 
-export const signInUser = async ({ commit }, user ) => {
+export const signInUser = async ({ commit, state }, user ) => {
     try {
         const signature = await getSignature();
-        const res = await api.post('login', { ...user, ...signature})
-        const token = res.data.access_token
-        commit('loginUser', { undefined, token })
-
+        const {data} = await api.post('login', { ...user, ...signature})
+        const token = data.access_token
+        
+        const res= await api.get('v1/me', { params: {...signature}, headers: {'Authorization': 'Bearer '+token} })
+        
+        commit('loginUser', { user:res.data, token })
         return { ok: true }
 
     } catch (error) {
@@ -34,34 +36,27 @@ export const signInUser = async ({ commit }, user ) => {
 }
 
 
-// export const checkAuthentication = async ({ commit }) => {
+export const checkAuthentication = async ({ commit, state }) => {
 
-//     const idToken      = localStorage.getItem('idToken')
-//     const refreshToken = localStorage.getItem('refreshToken')
+    const token = localStorage.getItem('token')
+    if( !token ) {
+        console.log("no token");
+        commit('logout')
+        return { ok: false, message: 'No hay token' }
+    }
 
-//     if( !idToken ) {
-//         commit('logout')
-//         return { ok: false, message: 'No hay token' }
-//     }
+    try {
+        const signature = await getSignature();
+        const token = localStorage.getItem("token")
+        const res = await api.get('v1/me', { params: {...signature}, headers: {'Authorization': 'Bearer '+token} })
 
-//     try {
-        
-//         const { data } = await authApi.post(':lookup', { idToken })
-//         // console.log(data)
-//         const { displayName, email } = data.users[0]
+        commit('loginUser', { user:res.data, token })
 
-//         const user = {
-//             name: displayName,
-//             email
-//         }
+        return { ok: true }
 
-//         commit('loginUser', { user, idToken, refreshToken })
+    } catch (error) {
+        commit('logout')
+        return { ok: false, message: error.response.data.message }
+    }
 
-//         return { ok: true }
-
-//     } catch (error) {
-//         commit('logout')
-//         return { ok: false, message: error.response.data.error.message }
-//     }
-
-// }
+}

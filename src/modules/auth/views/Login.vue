@@ -62,9 +62,8 @@ export default {
     const submitForm = async () => {
       try {
         const { ok, message } = await loginUser({ ...form });
-        console.log({ ok, message });
         if (ok) {
-          router.push({ name: "dashboard" });
+          router.push({ name: "user" });
         } else {
           Swal.fire("Error", message, "error");
         }
