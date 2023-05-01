@@ -9,11 +9,12 @@
           <span class="text-4xl text-white mt-auto px-5">{{
             item.nombre
           }}</span>
-          <span class="self-end mt-auto text-white underline">
-            <router-link :to="{ name: 'update', params: { id: item.id } }">
-              editar
-            </router-link>
-          </span>
+          <button
+            class="self-end mt-auto text-white underline"
+            @click="onUpdate(item.id)"
+          >
+            editar
+          </button>
         </div>
       </template>
     </div>
@@ -23,9 +24,11 @@
 <script>
 import useCategory from "../composables/useCategory";
 import Swal from "sweetalert2";
+import { useRouter } from "vue-router";
 export default {
   setup() {
-    const { listCategories, getListCategories } = useCategory();
+    const { listCategories, getListCategories, selectCategory } = useCategory();
+    const router = useRouter();
 
     const getCategories = async () => {
       const { ok, message } = await getListCategories();
@@ -37,6 +40,10 @@ export default {
     getCategories();
     return {
       listCategories,
+      onUpdate: (id) => {
+        selectCategory(id);
+        router.push({ name: "update", params: { id } });
+      },
     };
   },
 };

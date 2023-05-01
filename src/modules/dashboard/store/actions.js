@@ -31,45 +31,22 @@ export const list = async ({ commit, state, rootState } ) => {
 }
 
 
-export const update = async ({ commit, state }, user ) => {
+export const update = async ({ commit, state, rootState }, data ) => {
     try {
         const signature = await getSignature();
-        const {data} = await api.post('login', { ...user, ...signature})
-        const token = data.access_token
-        
-        const res= await api.get('v1/me', { params: {...signature}, headers: {'Authorization': 'Bearer '+token} })
-        
-        commit('loginUser', { user:res.data, token })
+        console.log(state.current);
+        const res = await api.put(`v1/categoria/update/${state.current}`, { nombre:data.name, ...signature}, {headers: {'Authorization': 'Bearer '+rootState.auth.token} })
         return { ok: true }
 
     } catch (error) {
+        console.log( error.response.data.message);
         return { ok: false, message: error.response.data.message }
     }
 
 }
 
 
-export const current = async ({ commit, state, rootState }) => {
-
-    const token = localStorage.getItem('token')
-    if( !token ) {
-        console.log("no token");
-        commit('logout')
-        return { ok: false, message: 'No hay token' }
-    }
-
-    try {
-        const signature = await getSignature();
-        const token = localStorage.getItem("token")
-        const res = await api.get('v1/me', { params: {...signature}, headers: {'Authorization': 'Bearer '+token} })
-
-        commit('loginUser', { user:res.data, token })
-
+export const current = async ({ commit}, id) => {
+        commit('setCurrent', {id})
         return { ok: true }
-
-    } catch (error) {
-        commit('logout')
-        return { ok: false, message: error.response.data.message }
-    }
-
 }

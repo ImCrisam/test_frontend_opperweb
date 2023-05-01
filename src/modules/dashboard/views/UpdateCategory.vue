@@ -25,16 +25,27 @@
 
 <script>
 import { reactive } from "vue";
-
+import useCategory from "../composables/useCategory";
+import { useRouter } from "vue-router";
+import Swal from "sweetalert2";
 export default {
   setup() {
+    const { updateCategory } = useCategory();
+    //const { options } = useRouter();
+    //console.log(options.history.location);
     const form = reactive({
       name: "",
     });
 
     const submitForm = async () => {
       try {
-        //const { data } = await axios.post("/api/login", form);
+        const { ok, message } = await updateCategory({ ...form });
+        console.log({ ok, message });
+        if (ok) {
+          Swal.fire("Categoria", "Categoria Actualizada", "success");
+        } else {
+          Swal.fire("Error", message, "error");
+        }
       } catch (error) {
         console.error(error);
       } finally {
