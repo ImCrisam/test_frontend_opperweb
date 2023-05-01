@@ -31,8 +31,8 @@ import Swal from "sweetalert2";
 export default {
   setup() {
     const { updateCategory, currentCategory } = useCategory();
-    //const { options } = useRouter();
-    //console.log(options.history.location);
+    const router = useRouter();
+    //console.log(router.options.history.location);
     const form = reactive({
       name: currentCategory.value.nombre || "",
     });
@@ -43,6 +43,7 @@ export default {
         console.log({ ok, message });
         if (ok) {
           Swal.fire("Categoria", "Categoria Actualizada", "success");
+          router.push({ name: "categories" });
         } else {
           Swal.fire("Error", message, "error");
         }

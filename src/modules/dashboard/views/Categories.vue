@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col h-full p-16">
+  <div class="flex flex-col h-full p-16 overflow-y-auto">
     <span class="text-4xl text-white">Lista de Categorías</span>
     <div class="flex flex-wrap gap-x-16 gap-y-10 mt-16">
       <template v-for="item in listCategories" :key="item.id">
