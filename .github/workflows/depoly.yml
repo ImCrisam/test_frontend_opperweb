@@ -18,6 +18,10 @@ jobs:
         run: |
           npm install
           npm run-script build
+        env:
+          VITE_API_URL: ${{ secrets.VITE_API_URL }}
+          VITE_PUBLIC_KEY: ${{ secrets.VITE_PUBLIC_KEY }}
+          VITE_PRIVATE_KEY: ${{ secrets.VITE_PRIVATE_KEY }}
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
