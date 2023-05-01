@@ -39,7 +39,9 @@
         </button>
       </div>
     </div>
-    <div class="bg-black md:w-3/4 flex md:items-center md:ps-12 h-full">
+    <div
+      class="bg-black md:w-3/4 flex md:items-center md:ps-12 ps-3 h-full overflow-clip"
+    >
       <router-view />
     </div>
   </div>

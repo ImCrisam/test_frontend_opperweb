@@ -1,10 +1,10 @@
 <template>
   <div class="flex flex-col h-full md:p-16 p-4">
-    <span class="text-white text-4xl mb-16"
+    <span class="text-white md:text-4xl md:mb-16 text-2xl mb-5"
       >Hola, <span class="font-bold">{{ username }}</span></span
     >
 
-    <div class="w-2/3">
+    <div class="sm:w-2/3">
       <span class="text-white">Selecciona una opción:</span>
       <router-link :to="{ name: 'categories', params: { id: 0 } }">
         <button
