@@ -15,8 +15,12 @@
         <div class="text-white mb-16">
           <span class="font-bold text-2xl"> Categorías</span>
           <ul class="list-disc ml-10 text-xl font-light mt-3">
-            <li class="cursor-pointer hover:underline">Ver todas</li>
-            <li class="cursor-pointer hover:underline">Crear</li>
+            <router-link :to="{ name: 'categories' }">
+              <li class="cursor-pointer hover:underline">Ver todas</li>
+            </router-link>
+            <router-link :to="{ name: 'create' }">
+              <li class="cursor-pointer hover:underline">Crear</li>
+            </router-link>
           </ul>
         </div>
 
