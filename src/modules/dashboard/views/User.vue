@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col h-full p-16">
+  <div class="flex flex-col h-full md:p-16 p-4">
     <span class="text-white text-4xl mb-16"
       >Hola, <span class="font-bold">{{ username }}</span></span
     >

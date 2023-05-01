@@ -1,23 +1,23 @@
 <template>
-  <div class="flex flex-row h-screen">
-    <div class="bg-fuchsia-600 w-1/4 p-4">
+  <div class="flex flex-col md:flex-row h-screen">
+    <div class="bg-fuchsia-600 md:w-1/4 p-4">
       <div class="flex items-center self-start mb-3">
         <img
           src="https://res.cloudinary.com/dwmznusxf/image/upload/v1682856062/vpmxm10fxx6ttjakuahv.png"
           alt="icons pages"
-          class="mr-3 w-15"
+          class="mr-3 md:w-15 w-7"
         />
-        <span class="font-bold text-white text-4xl">
+        <span class="font-bold text-white md:text-4xl">
           anime<span class="text-fuchsia-400">yabu.</span></span
         >
       </div>
-      <div class="p-10">
+      <div class="md:p-10">
         <router-link :to="{ name: 'user' }">
           <span class="text-white text-2xl font-bold cursor-pointer"
             >Inicio</span
           >
         </router-link>
-        <div class="text-white mb-16 mt-5">
+        <div class="text-white md:mb-16 md:mt-5 my-3">
           <router-link :to="{ name: 'categories' }">
             <span class="font-bold text-2xl cursor-pointer"> Categorías</span>
           </router-link>
@@ -39,7 +39,7 @@
         </button>
       </div>
     </div>
-    <div class="bg-black w-3/4 flex items-center ps-12">
+    <div class="bg-black md:w-3/4 flex md:items-center md:ps-12 h-full">
       <router-view />
     </div>
   </div>
