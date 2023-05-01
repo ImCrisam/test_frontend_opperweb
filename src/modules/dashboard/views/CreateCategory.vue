@@ -1,8 +1,8 @@
 <template>
-  <div class="flex flex-col justify-start h-full p-16">
+  <div class="flex flex-col justify-start h-full md:p-16 p-4">
     <span class="text-4xl text-white">Crear categoría</span>
     <form @submit.prevent="submitForm">
-      <div class="my-7">
+      <div class="md:my-7 my-4">
         <label class="text-sm text-white" for="email"
           >Nombre de categoría</label
         >
