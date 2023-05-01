@@ -32,7 +32,7 @@
 
 <script>
 import { useRouter } from "vue-router";
-import useAuth from "../modules/auth/composables/useAuth";
+import useAuth from "../../auth/composables/useAuth";
 export default {
   setup() {
     const router = useRouter();

@@ -12,8 +12,15 @@
         >
       </div>
       <div class="p-10">
-        <div class="text-white mb-16">
-          <span class="font-bold text-2xl"> Categorías</span>
+        <router-link :to="{ name: 'user' }">
+          <span class="text-white text-2xl font-bold cursor-pointer"
+            >Inicio</span
+          >
+        </router-link>
+        <div class="text-white mb-16 mt-5">
+          <router-link :to="{ name: 'categories' }">
+            <span class="font-bold text-2xl cursor-pointer"> Categorías</span>
+          </router-link>
           <ul class="list-disc ml-10 text-xl font-light mt-3">
             <router-link :to="{ name: 'categories' }">
               <li class="cursor-pointer hover:underline">Ver todas</li>
@@ -25,7 +32,7 @@
         </div>
 
         <button
-          class="text-white font-bold text-2xl cursor-pointer"
+          class="text-white font-bold text-2xl cursor-pointer text-start"
           @click="onLogout"
         >
           Cerrar sesión
@@ -40,7 +47,7 @@
 
 <script>
 import { useRouter } from "vue-router";
-import useAuth from "../modules/auth/composables/useAuth";
+import useAuth from "../../auth/composables/useAuth";
 export default {
   setup() {
     const router = useRouter();
