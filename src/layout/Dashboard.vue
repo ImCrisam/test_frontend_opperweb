@@ -20,7 +20,10 @@
           </ul>
         </div>
 
-        <button class="text-white font-bold text-2xl cursor-pointer">
+        <button
+          class="text-white font-bold text-2xl cursor-pointer"
+          @click="onLogout"
+        >
           Cerrar sesión
         </button>
       </div>
@@ -31,6 +34,19 @@
   </div>
 </template>
 
-<script></script>
-
-<style lang="scss" scoped></style>
+<script>
+import { useRouter } from "vue-router";
+import useAuth from "../modules/auth/composables/useAuth";
+export default {
+  setup() {
+    const router = useRouter();
+    const { logout } = useAuth();
+    return {
+      onLogout: () => {
+        logout();
+        router.push({ name: "login" });
+      },
+    };
+  },
+};
+</script>
