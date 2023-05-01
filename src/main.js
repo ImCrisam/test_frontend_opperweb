@@ -17,8 +17,6 @@ const Toast = Swal.mixin({
 
 const app = createApp(App);
 
-app.use(VueAxios, axios);
-app.provide("axios", app.config.globalProperties.axios);
 app.provide("Swal", Toast);
 
 app.use(store);
