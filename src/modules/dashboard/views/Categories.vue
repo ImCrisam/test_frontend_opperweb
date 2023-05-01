@@ -1,7 +1,7 @@
 <template>
-  <div class="flex flex-col h-full p-16 overflow-y-auto">
+  <div class="flex flex-col h-full py-10">
     <span class="text-4xl text-white">Lista de Categorías</span>
-    <div class="flex flex-wrap gap-x-16 gap-y-10 mt-16">
+    <div class="flex flex-wrap gap-x-16 gap-y-10 mt-10 overflow-y-auto">
       <template v-for="item in listCategories" :key="item.id">
         <div
           class="w-72 h-40 bg-fuchsia-600 rounded-sm flex flex-col justify-center items-center p-3"

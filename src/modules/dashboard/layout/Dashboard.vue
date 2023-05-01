@@ -39,7 +39,7 @@
         </button>
       </div>
     </div>
-    <div class="bg-black w-3/4 flex items-center p-16">
+    <div class="bg-black w-3/4 flex items-center ps-12">
       <router-view />
     </div>
   </div>
