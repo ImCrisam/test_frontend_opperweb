@@ -9,6 +9,7 @@
         <input
           type="name"
           id="name"
+          required
           v-model="form.name"
           class="border-2 border-white rounded-lg w-full p-2 bg-white bg-opacity-70"
         />
@@ -25,16 +26,25 @@
 
 <script>
 import { reactive } from "vue";
-
+import useCategory from "../composables/useCategory";
+import Swal from "sweetalert2";
 export default {
   setup() {
+    const { createCategory } = useCategory();
+
     const form = reactive({
       name: "",
     });
 
     const submitForm = async () => {
       try {
-        //const { data } = await axios.post("/api/login", form);
+        const { ok, message } = await createCategory({ ...form });
+        console.log({ ok, message });
+        if (ok) {
+          Swal.fire("Creada", "Categoria Creada", "success");
+        } else {
+          Swal.fire("Error", message, "error");
+        }
       } catch (error) {
         console.error(error);
       } finally {
