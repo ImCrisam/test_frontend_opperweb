@@ -33,6 +33,7 @@ const useCategory = () => {
         
 
         listCategories: computed(()=> store.getters['category/list']),
+        currentCategory: computed(() => store.getters['category/currentCategory'] )
         //category: computed(()=> store.getters['category/get'])
     }
 }

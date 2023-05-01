@@ -30,11 +30,11 @@ import { useRouter } from "vue-router";
 import Swal from "sweetalert2";
 export default {
   setup() {
-    const { updateCategory } = useCategory();
+    const { updateCategory, currentCategory } = useCategory();
     //const { options } = useRouter();
     //console.log(options.history.location);
     const form = reactive({
-      name: "",
+      name: currentCategory.value.nombre || "",
     });
 
     const submitForm = async () => {

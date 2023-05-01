@@ -6,6 +6,9 @@ export const list= ( state ) => {
 export const current = ( state ) => {
     return state.current
 }
+export const currentCategory = ( state ) => {
+    return state.list.find((item) => item.id===state.current)
+}
 
 
 
