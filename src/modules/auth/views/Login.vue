@@ -1,41 +1,3 @@
-<script>
-import { reactive } from "vue";
-import { useStore } from "vuex";
-import axios from "axios";
-
-import SocialBtn from "../components/SocialBtn.vue";
-export default {
-  components: {
-    SocialBtn,
-  },
-  setup() {
-    const store = useStore();
-
-    const form = reactive({
-      email: "",
-      password: "",
-    });
-
-    const submitForm = async () => {
-      try {
-        const { data } = await axios.post("/api/login", form);
-        store.dispatch("login", data);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        form.email = "";
-        form.password = "";
-      }
-    };
-
-    return {
-      email: form.email,
-      password: form.password,
-      submitForm,
-    };
-  },
-};
-</script>
 <template>
   <img
     src="https://res.cloudinary.com/dwmznusxf/image/upload/v1682826732/ngrg4put4ogyaaiikny1.png"
@@ -78,3 +40,47 @@ export default {
     <SocialBtn islogin></SocialBtn>
   </div>
 </template>
+
+<script>
+import { reactive } from "vue";
+import { useRouter } from "vue-router";
+import useAuth from "../composables/useAuth";
+import SocialBtn from "../components/SocialBtn.vue";
+export default {
+  components: {
+    SocialBtn,
+  },
+  setup() {
+    const router = useRouter();
+    const { loginUser } = useAuth();
+
+    const form = reactive({
+      email: "randommail21@mail.com",
+      password: "strongkey12321",
+    });
+
+    const submitForm = async () => {
+      try {
+        const { ok, message } = await loginUser({ ...form });
+        console.log({ ok, message });
+        if (ok) {
+          router.push({ name: "dashboard" });
+        } else {
+          Swal.fire("Error", message, "error");
+        }
+      } catch (error) {
+        console.error(error);
+      } finally {
+        form.email = "";
+        form.password = "";
+      }
+    };
+
+    return {
+      email: form.email,
+      password: form.password,
+      submitForm,
+    };
+  },
+};
+</script>

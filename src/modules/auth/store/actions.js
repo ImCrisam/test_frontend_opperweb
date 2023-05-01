@@ -4,11 +4,9 @@ export const createUser = async ({ commit }, data ) => {
     try {
         const signature = await getSignature();
         const res = await api.post('register', { ...data, ...signature})
-        console.log({res});
         const {user, token} = res.data
         delete user.password
         delete user.password_confirmation
-        console.log({user, token});
         commit('loginUser', { user, token })
 
         return { ok: true }
@@ -20,26 +18,20 @@ export const createUser = async ({ commit }, data ) => {
 }
 
 
-// export const signInUser = async ({ commit }, user ) => {
+export const signInUser = async ({ commit }, user ) => {
+    try {
+        const signature = await getSignature();
+        const res = await api.post('login', { ...user, ...signature})
+        const token = res.data.access_token
+        commit('loginUser', { undefined, token })
 
-//     const { email, password } = user
+        return { ok: true }
 
-//     try {
-        
-//         const { data } = await authApi.post(':signInWithPassword', { email, password, returnSecureToken: true })
-//         const { displayName, idToken, refreshToken } = data
-        
-//         user.name = displayName
+    } catch (error) {
+        return { ok: false, message: error.response.data.message }
+    }
 
-//         commit('loginUser', { user, idToken, refreshToken })
-
-//         return { ok: true }
-
-//     } catch (error) {
-//         return { ok: false, message: error.response.data.error.message }
-//     }
-
-// }
+}
 
 
 // export const checkAuthentication = async ({ commit }) => {

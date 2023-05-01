@@ -1,6 +1,6 @@
 
 export const loginUser = ( state, { user, token }) => {
-
+    console.log({user, token});
     if ( token ) {
         localStorage.setItem( 'token', token )
         state.token = token
