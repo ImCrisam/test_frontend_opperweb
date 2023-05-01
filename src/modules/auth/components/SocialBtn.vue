@@ -48,13 +48,19 @@ export default {
     </button>
   </div>
   <div class="flex justify-center">
-    <a v-if="islogin" href="/#/register" class="text-white my-7 cursor-pointer"
+    <router-link
+      v-if="islogin"
+      :to="{ name: 'register' }"
+      class="text-white my-7 cursor-pointer"
       >Quieres registrarte?
       <span class="text-fuchsia-200"> Registrate </span>
-    </a>
-    <a v-else href="/#/" class="text-white my-7 cursor-pointer"
+    </router-link>
+    <router-link
+      v-else
+      :to="{ name: 'login' }"
+      class="text-white my-7 cursor-pointer"
       >Ya estás registrado?
       <span class="text-fuchsia-200"> Acceder </span>
-    </a>
+    </router-link>
   </div>
 </template>

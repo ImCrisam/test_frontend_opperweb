@@ -15,16 +15,15 @@ import store from "./store";
 
 
 const app = createApp(App);
-axios.defaults.baseURL = import.meta.env.VITE_API_URL
+
 
 
 app.use(VueAxios, axios);
 app.provide("axios", app.config.globalProperties.axios);
 
-app.use(VueSweetalert2);
-
 app.use(store);
 app.use(router);
+app.use(VueSweetalert2);
 
 
 

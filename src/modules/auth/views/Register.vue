@@ -1,54 +1,3 @@
-<script>
-import { reactive } from "vue";
-import { useStore } from "vuex";
-import { inject } from "vue";
-import { signature } from "../../../utils/api";
-import SocialBtn from "../components/SocialBtn.vue";
-export default {
-  components: {
-    SocialBtn,
-  },
-  setup() {
-    const store = useStore();
-    const axios = inject("axios");
-
-    const form = reactive({
-      name: "randomusername12",
-      lastname: "randomusername12",
-      telephone: "12345678932",
-      razon_social: "",
-      NIT: "",
-      type_user_id: "1",
-      verify_tc: "1",
-      identy_document: "12345678921",
-      email: "randommail21@mail.com",
-      password: "strongkey12321",
-      password_confirmation: "strongkey12321",
-    });
-
-    const submitForm = async (e) => {
-      try {
-        const info = await signature();
-
-        const res = axios.post("register", { ...form, ...info });
-        console.log(res);
-        //store.dispatch("login", data);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        form.email = "";
-        form.password = "";
-      }
-    };
-
-    return {
-      form,
-      submitForm,
-    };
-  },
-};
-</script>
-
 <template>
   <div class="flex items-center">
     <img
@@ -192,3 +141,56 @@ export default {
     <SocialBtn></SocialBtn>
   </div>
 </template>
+
+<script>
+import { reactive } from "vue";
+import { useRouter } from "vue-router";
+import useAuth from "../composables/useAuth";
+import SocialBtn from "../components/SocialBtn.vue";
+
+import Swal from "sweetalert2";
+export default {
+  components: {
+    SocialBtn,
+  },
+  setup() {
+    const router = useRouter();
+    const { createUser } = useAuth();
+
+    const form = reactive({
+      name: "randomusername12",
+      lastname: "randomusername12",
+      telephone: "12345678932",
+      razon_social: "randomusername5",
+      NIT: "1234567895",
+      type_user_id: "1",
+      verify_tc: "1",
+      identy_document: "12345678921",
+      email: "randommail21@mail.com",
+      password: "strongkey12321",
+      password_confirmation: "strongkey12321",
+    });
+
+    const submitForm = async (e) => {
+      try {
+        const { ok, message } = await createUser({ ...form });
+        console.log({ ok, message });
+        if (ok) {
+          router.push({ name: "dashboard" });
+        } else {
+          Swal.fire("Error", message, "error");
+        }
+      } catch (error) {
+        console.log(error);
+      } finally {
+        //borrar campos
+      }
+    };
+
+    return {
+      form,
+      submitForm,
+    };
+  },
+};
+</script>
