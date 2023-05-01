@@ -13,10 +13,7 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 
 import store from "./store";
 
-
 const app = createApp(App);
-
-
 
 app.use(VueAxios, axios);
 app.provide("axios", app.config.globalProperties.axios);

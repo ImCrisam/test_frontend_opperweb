@@ -15,7 +15,7 @@
           <input
             type="email"
             id="email"
-            v-model="email"
+            v-model="form.email"
             class="border-2 border-white rounded-lg w-full p-2 bg-white bg-opacity-70"
           />
         </div>
@@ -24,7 +24,7 @@
           <input
             type="password"
             id="password"
-            v-model="password"
+            v-model="form.password"
             class="border-2 border-white rounded-lg w-full p-2 bg-white bg-opacity-70"
           />
         </div>
@@ -48,6 +48,7 @@ import { reactive } from "vue";
 import { useRouter } from "vue-router";
 import useAuth from "../composables/useAuth";
 import SocialBtn from "../components/SocialBtn.vue";
+import Swal from "sweetalert2";
 export default {
   components: {
     SocialBtn,
@@ -57,8 +58,8 @@ export default {
     const { loginUser } = useAuth();
 
     const form = reactive({
-      email: "randommail21@mail.com",
-      password: "strongkey12321",
+      email: "",
+      password: "",
     });
 
     const submitForm = async () => {
@@ -78,8 +79,7 @@ export default {
     };
 
     return {
-      email: form.email,
-      password: form.password,
+      form,
       submitForm,
     };
   },

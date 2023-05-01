@@ -30,7 +30,8 @@ export const signInUser = async ({ commit, state }, user ) => {
         return { ok: true }
 
     } catch (error) {
-        return { ok: false, message: error.response.data.message }
+        const message = error.response.data.message || "Credenciales Incorrectas"
+        return { ok: false, message}
     }
 
 }
